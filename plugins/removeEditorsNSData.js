@@ -7,6 +7,10 @@ exports.active = true;
 var editorNamespaces = require('./_collections').editorNamespaces,
     prefixes = [];
 
+exports.params = {
+    additionalNamespaces: []
+};
+
 /**
  * Remove editors namespaces, elements and attributes.
  *
@@ -20,7 +24,11 @@ var editorNamespaces = require('./_collections').editorNamespaces,
  *
  * @author Kir Belevich
  */
-exports.fn = function(item) {
+exports.fn = function(item, params) {
+
+    if (Array.isArray(params.additionalNamespaces)) {
+        editorNamespaces = editorNamespaces.concat(params.additionalNamespaces);
+    }
 
     if (item.elem) {
 
